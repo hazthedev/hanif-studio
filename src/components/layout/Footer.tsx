@@ -10,6 +10,16 @@ import {
   ArrowUp
 } from 'lucide-react'
 
+const smoothScroll = (targetId: string) => {
+  const element = document.getElementById(targetId.replace('#', ''))
+  if (element) {
+    element.scrollIntoView({
+      behavior: 'smooth',
+      block: 'start'
+    })
+  }
+}
+
 const Footer = () => {
   const socialLinks = [
     { icon: Facebook, href: '#', label: 'Facebook' },
@@ -19,18 +29,18 @@ const Footer = () => {
   ]
 
   const quickLinks = [
-    { label: 'Home', href: '/' },
-    { label: 'Portfolio', href: '/portfolio' },
-    { label: 'Services', href: '/services' },
-    { label: 'About', href: '/about' },
-    { label: 'Contact', href: '/contact' },
+    { label: 'Home', href: '#hero' },
+    { label: 'Portfolio', href: '#portfolio' },
+    { label: 'Services', href: '#services' },
+    { label: 'About', href: '#about' },
+    { label: 'Contact', href: '#contact' },
   ]
 
   const services = [
-    { label: 'Brand Identity', href: '/services#brand-identity' },
-    { label: 'Visual Product Design', href: '/services#visual-product' },
-    { label: 'UI/UX Design', href: '/services#ui-ux' },
-    { label: 'Packaging Design', href: '/services#packaging' },
+    { label: 'Brand Identity', href: '#services#brand-identity' },
+    { label: 'Visual Product Design', href: '#services#visual-product' },
+    { label: 'UI/UX Design', href: '#services#ui-ux' },
+    { label: 'Packaging Design', href: '#services#packaging' },
   ]
 
   const scrollToTop = () => {
@@ -88,12 +98,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {quickLinks.map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
-                    className="text-gray-300 hover:text-primary-blue transition-colors"
+                  <button
+                    onClick={() => smoothScroll(link.href)}
+                    className="text-gray-300 hover:text-primary-blue transition-colors text-left w-full"
                   >
                     {link.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -110,12 +120,12 @@ const Footer = () => {
             <ul className="space-y-2">
               {services.map((service) => (
                 <li key={service.label}>
-                  <a
-                    href={service.href}
-                    className="text-gray-300 hover:text-primary-blue transition-colors"
+                  <button
+                    onClick={() => smoothScroll(service.href)}
+                    className="text-gray-300 hover:text-primary-blue transition-colors text-left w-full"
                   >
                     {service.label}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -159,12 +169,12 @@ const Footer = () => {
               © {new Date().getFullYear()} Hanif Studio. All rights reserved.
             </p>
             <div className="flex space-x-6">
-              <a href="/privacy" className="text-gray-400 hover:text-primary-blue text-sm transition-colors">
+              <span className="text-gray-400 text-sm">
                 Privacy Policy
-              </a>
-              <a href="/terms" className="text-gray-400 hover:text-primary-blue text-sm transition-colors">
+              </span>
+              <span className="text-gray-400 text-sm">
                 Terms of Service
-              </a>
+              </span>
             </div>
           </div>
         </motion.div>
@@ -173,15 +183,15 @@ const Footer = () => {
       {/* Scroll to Top Button */}
       <motion.button
         onClick={scrollToTop}
-        className="fixed bottom-8 right-8 w-12 h-12 bg-primary-blue text-white rounded-full
-                 shadow-lg hover:bg-secondary-blue transition-colors z-40"
+        className="fixed bottom-8 right-8 w-12 h-12 bg-gradient-to-r from-primary-coral to-accent-orange text-white rounded-full
+                 shadow-lg hover:shadow-xl transition-all duration-300 z-40 flex items-center justify-center"
         aria-label="Scroll to top"
         initial={{ opacity: 0, scale: 0 }}
         animate={{ opacity: 1, scale: 1 }}
         whileHover={{ scale: 1.1 }}
         whileTap={{ scale: 0.9 }}
       >
-        <ArrowUp size={20} />
+        <ArrowUp size={20} className="text-white" />
       </motion.button>
     </footer>
   )

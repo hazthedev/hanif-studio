@@ -43,8 +43,8 @@ const Hero = () => {
           >
             {/* Badge */}
             <motion.div
-              className="inline-flex items-center space-x-2 bg-primary-blue/10 text-primary-blue
-                        px-4 py-2 rounded-full"
+              className="inline-flex items-center space-x-2 bg-gradient-to-r from-primary-coral/10 to-accent-orange/10 text-primary-coral
+                        px-4 py-2 rounded-full border border-primary-coral/20"
               initial={{ opacity: 0, y: -20 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ duration: 0.6, delay: 0.2 }}
@@ -112,14 +112,10 @@ const Hero = () => {
                 whileTap={{ scale: 0.95 }}
               >
                 Start Your Project
-                <ArrowRight
-                  size={20}
-                  className="ml-2 group-hover:translate-x-1 transition-transform"
-                />
               </motion.button>
 
               <motion.button
-                className="btn-secondary flex items-center justify-center group"
+                className="bg-gradient-to-r from-primary-coral to-accent-orange text-white px-8 py-4 rounded-full font-semibold hover:shadow-lg transition-all duration-300 flex items-center justify-center group"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
               >
@@ -226,51 +222,12 @@ const Hero = () => {
             </motion.div>
 
             {/* Stats Cards */}
-            <div className="absolute -bottom-8 -left-8 grid grid-cols-2 gap-4">
-              {stats.slice(0, 4).map((stat, index) => (
-                <motion.div
-                  key={stat.label}
-                  className="bg-white rounded-xl shadow-lg p-4 text-center"
-                  initial={{ opacity: 0, y: 20 }}
-                  animate={{ opacity: 1, y: 0 }}
-                  transition={{
-                    duration: 0.6,
-                    delay: 0.8 + index * 0.1
-                  }}
-                  whileHover={{ y: -5 }}
-                >
-                  <div className="text-2xl font-bold text-primary-blue">
-                    {stat.value}
-                  </div>
-                  <div className="text-xs text-text-muted">
-                    {stat.label}
-                  </div>
-                </motion.div>
-              ))}
-            </div>
+
           </motion.div>
         </div>
       </div>
 
-      {/* Scroll Indicator */}
-      <motion.div
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2"
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8, delay: 1.2 }}
-      >
-        <motion.div
-          className="w-6 h-10 border-2 border-primary-blue rounded-full flex justify-center"
-          animate={{ opacity: [0.5, 1, 0.5] }}
-          transition={{ duration: 2, repeat: Infinity }}
-        >
-          <motion.div
-            className="w-1 h-3 bg-primary-blue rounded-full mt-2"
-            animate={{ y: [0, 12, 0] }}
-            transition={{ duration: 2, repeat: Infinity }}
-          />
-        </motion.div>
-      </motion.div>
+
     </section>
   )
 }
